@@ -10,7 +10,7 @@ hostRouter.get("/add-home", (req, res, next) => {
 });
 const registeredHomes=[];
 hostRouter.post("/add-home", (req, res, next) => {
-  
+  console.log(req.body);
   registeredHomes.push(req.body);
   res.render("homeAdded", {
     pageTitle: "airbnb Home",
