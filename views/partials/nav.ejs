@@ -1,20 +1,65 @@
-<header class="bg-red-500 text-white p-4 shadow-md">
+<header class="bg-gradient-to-r from-red-600 to-red-500 text-white p-4 shadow-lg">
   <nav class="container mx-auto flex justify-between items-center">
-    <ul class="flex space-x-4">
+    <ul class="flex space-x-6 items-center">
       <li>
-        <a
-          href="/"
-          class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-          >Go to Home</a
-        >
+        <a href="/" class="<%= currentPage === 'index' ? 'bg-red-400/50 backdrop-blur-sm' : 'hover:bg-red-400/30' %> py-2 px-4 rounded-lg transition-all duration-300 font-semibold">
+          <i class="fas fa-home mr-2"></i>airbnb
+        </a>
+      </li>
+      <% if (isLoggedIn) { %>
+        <% if(user.userType === 'guest') { %>
+      <li>
+        <a href="/homes" class="<%= currentPage === 'Home' ? 'bg-red-400/50 backdrop-blur-sm' : 'hover:bg-red-400/30' %> py-2 px-4 rounded-lg transition-all duration-300">
+          <i class="fas fa-house-user mr-2"></i>Homes-List
+        </a>
       </li>
       <li>
-        <a
-          href="/host/add-home"
-          class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-          >Add Home</a
-        >
+        <a href="/favourites" class="<%= currentPage === 'favourites' ? 'bg-red-400/50 backdrop-blur-sm' : 'hover:bg-red-400/30' %> py-2 px-4 rounded-lg transition-all duration-300">
+          <i class="fas fa-heart mr-2"></i>Favourites
+        </a>
+      </li>
+      <li>
+        <a href="/bookings" class="<%= currentPage === 'bookings' ? 'bg-red-400/50 backdrop-blur-sm' : 'hover:bg-red-400/30' %> py-2 px-4 rounded-lg transition-all duration-300">
+          <i class="fas fa-calendar-check mr-2"></i>Bookings
+        </a>
+      </li>
+      <% } else { %>
+      <li>
+        <a href="/host/host-home-list" class="<%= currentPage === 'host-homes' ? 'bg-red-400/50 backdrop-blur-sm' : 'hover:bg-red-400/30' %> py-2 px-4 rounded-lg transition-all duration-300">
+          <i class="fas fa-list mr-2"></i>Host Homes
+        </a>
+      </li>
+      <li>
+        <a href="/host/add-home" class="<%= currentPage === 'addHome' ? 'bg-red-400/50 backdrop-blur-sm' : 'hover:bg-red-400/30' %> py-2 px-4 rounded-lg transition-all duration-300">
+          <i class="fas fa-plus-circle mr-2"></i>Add Home
+        </a>
+      </li>
+      <% } %>
+      <% } %>
+      <% if (!isLoggedIn) { %>
+      <li>
+        <a href="/signup" class="hover:bg-red-400/30 py-2 px-4 rounded-lg transition-all duration-300">
+          <i class="fas fa-user-plus mr-2"></i>Sign Up
+        </a>
+      </li>
+      <li>
+        <a href="/login" class="hover:bg-red-400/30 py-2 px-4 rounded-lg transition-all duration-300">
+          <i class="fas fa-sign-in-alt mr-2"></i>Login
+        </a>
+      </li>
+      <% } %>
+    </ul>
+
+    <% if (isLoggedIn) { %>
+    <ul class="flex items-center">
+      <li>
+        <form action="/logout" method="POST">
+          <button type="submit" class="hover:bg-red-400/30 py-2 px-4 rounded-lg transition-all duration-300">
+            <i class="fas fa-sign-out-alt mr-2"></i>Logout
+          </button>
+        </form>
       </li>
     </ul>
+    <% } %>
   </nav>
 </header>
